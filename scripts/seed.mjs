@@ -1,23 +1,20 @@
 import "dotenv/config";
 import bcrypt from "bcryptjs";
-import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
-import * as schema from "../src/db/schema";
 
-const sql = postgres(process.env.DATABASE_URL!, { max: 1 });
-const db = drizzle(sql, { schema });
+const sql = postgres(process.env.DATABASE_URL, { max: 1, onnotice: () => {} });
 
 const login = process.env.ADMIN_LOGIN || "admin";
 const password = process.env.ADMIN_PASSWORD;
 if (!password) throw new Error("Set ADMIN_PASSWORD in .env");
 
-await db
-  .insert(schema.users)
-  .values({ name: "Administrator", login, passwordHash: await bcrypt.hash(password, 10), role: "admin" })
-  .onConflictDoNothing();
+await sql`
+  insert into users (name, login, password_hash, role)
+  values ('Administrator', ${login}, ${await bcrypt.hash(password, 10)}, 'admin')
+  on conflict (login) do nothing`;
 
 // Regions of Uzbekistan as a starting list; fee % and aliases can be edited in the app.
-const cityList: [string, string][] = [
+const cities = [
   ["Toshkent shahri", "Ташкент,Tashkent,Toshkent,г. Ташкент"],
   ["Toshkent viloyati", "Ташкентская область,Toshkent vil."],
   ["Andijon", "Андижан,Andijan"],
@@ -33,10 +30,9 @@ const cityList: [string, string][] = [
   ["Sirdaryo", "Сырдарья,Guliston,Гулистан"],
   ["Surxondaryo", "Сурхандарья,Termiz,Термез"],
 ];
-await db
-  .insert(schema.cities)
-  .values(cityList.map(([name, aliases]) => ({ name, aliases })))
-  .onConflictDoNothing();
+for (const [name, aliases] of cities) {
+  await sql`insert into cities (name, aliases) values (${name}, ${aliases}) on conflict (name) do nothing`;
+}
 
 await sql.end();
 console.log(`Seed done. Admin login: ${login}`);

@@ -47,6 +47,6 @@ npm run db:seed             # first admin + Uzbekistan regions
 npm run dev                 # http://localhost:3000
 ```
 
-Production: `npm run build && npm start`. HTTPS is required for the phone camera to work.
+Production: see [DEPLOY.md](DEPLOY.md) (Docker + automatic HTTPS). HTTPS is required for the phone camera to work.
 
 Changing the database: edit `src/db/schema.ts`, run `npx drizzle-kit generate`, then `npm run db:migrate`.
