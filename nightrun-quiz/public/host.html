@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#05070f">
+  <meta name="robots" content="noindex">
+  <title>Night Run Viktorina</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,700;0,800;0,900;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/host.css">
+</head>
+<body class="hostpanel">
+  <!-- Login -->
+  <section class="view h-login" id="v-login">
+    <form class="h-card" id="loginForm">
+      <div class="wordmark h-logo"></div>
+      <h1 data-i18n="login_title"></h1>
+      <label class="field">
+        <span data-i18n="password_label"></span>
+        <input class="input" type="password" id="passwordInput" data-i18n-placeholder="password_ph" autocomplete="current-password" required>
+      </label>
+      <div class="error-msg" id="loginError" role="alert"></div>
+      <button class="btn btn-primary h-full" type="submit" data-i18n="login_btn"></button>
+    </form>
+  </section>
+
+  <!-- Quiz list -->
+  <section class="view h-page" id="v-list">
+    <header class="h-header">
+      <div class="wordmark"></div>
+      <span class="h-header-title" data-i18n="host_title"></span>
+      <button class="btn btn-ghost" id="logoutBtn" type="button" data-i18n="logout"></button>
+    </header>
+    <div class="lane"></div>
+    <div class="h-content">
+      <div class="h-row">
+        <h1 data-i18n="quizzes"></h1>
+        <button class="btn btn-primary" id="newQuizBtn" type="button" data-i18n="new_quiz"></button>
+      </div>
+      <div class="quiz-list" id="quizList"></div>
+    </div>
+  </section>
+
+  <!-- Editor -->
+  <section class="view h-page" id="v-editor">
+    <header class="h-header">
+      <div class="wordmark"></div>
+      <span class="h-header-title" id="editorTitle"></span>
+      <div class="h-header-actions">
+        <button class="btn btn-ghost" id="cancelEditBtn" type="button" data-i18n="cancel"></button>
+        <button class="btn btn-primary" id="saveBtn" type="button" data-i18n="save"></button>
+      </div>
+    </header>
+    <div class="lane"></div>
+    <div class="h-content">
+      <label class="field">
+        <span data-i18n="quiz_title_label"></span>
+        <input class="input input-lg" id="quizTitle" maxlength="120" data-i18n-placeholder="quiz_title_ph">
+      </label>
+      <p class="h-hint" data-i18n="correct_hint"></p>
+      <div id="questionList"></div>
+      <button class="btn btn-ghost h-add" id="addQuestionBtn" type="button" data-i18n="add_question"></button>
+      <div class="error-msg" id="editorError" role="alert"></div>
+      <div class="h-bottom-actions">
+        <button class="btn btn-primary" id="saveBtn2" type="button" data-i18n="save"></button>
+      </div>
+    </div>
+  </section>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="/lang/uz.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/host.js"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#05070f">
+  <title>Night Run Viktorina</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,700;0,800;0,900;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/player.css">
+</head>
+<body class="player">
+  <div class="conn-banner" id="connBanner" data-i18n="reconnecting" hidden></div>
+
+  <header class="p-top" id="topBar" hidden>
+    <div class="p-nick" id="topNick"></div>
+    <div class="p-score"><span id="topScore">0</span> <small data-i18n="score_label"></small></div>
+  </header>
+
+  <main class="p-main">
+    <!-- Join -->
+    <section class="view p-center" id="v-join">
+      <div class="wordmark p-logo"></div>
+      <p class="p-tagline" data-i18n="tagline"></p>
+      <form class="p-card" id="joinForm" autocomplete="off" novalidate>
+        <h1 data-i18n="join_title"></h1>
+        <label class="field">
+          <span data-i18n="code_label"></span>
+          <input class="input input-code" id="codeInput" inputmode="numeric" pattern="[0-9]*" maxlength="6" data-i18n-placeholder="code_ph" required>
+        </label>
+        <label class="field">
+          <span data-i18n="nick_label"></span>
+          <input class="input" id="nickInput" maxlength="16" data-i18n-placeholder="nick_ph" required>
+        </label>
+        <div class="error-msg" id="joinError" role="alert"></div>
+        <button class="btn btn-primary btn-block" id="joinBtn" type="submit" data-i18n="join_btn"></button>
+      </form>
+    </section>
+
+    <!-- Lobby -->
+    <section class="view p-center" id="v-lobby">
+      <div class="runner-track"><div class="runner-dot"></div></div>
+      <h1 class="p-big" data-i18n="lobby_title"></h1>
+      <div class="p-nick-badge" id="lobbyNick"></div>
+      <p class="p-sub" data-i18n="lobby_sub"></p>
+      <p class="p-muted" id="lobbyCount"></p>
+    </section>
+
+    <!-- Get ready (question intro) -->
+    <section class="view p-center" id="v-intro">
+      <div class="p-qnum" id="introNum"></div>
+      <h1 class="p-big" data-i18n="get_ready"></h1>
+      <p class="p-sub" data-i18n="look_screen"></p>
+      <div class="intro-bar"><div id="introFill"></div></div>
+    </section>
+
+    <!-- Answer buttons -->
+    <section class="view p-answer" id="v-question">
+      <div class="p-qbar">
+        <span id="qNum"></span>
+        <span class="p-timer" id="qTimer"></span>
+      </div>
+      <div class="p-timebar"><div id="qTimeFill"></div></div>
+      <div class="answer-grid" id="answerGrid"></div>
+    </section>
+
+    <!-- Answer sent, waiting -->
+    <section class="view p-center" id="v-answered">
+      <div class="answered-shape" id="answeredShape"></div>
+      <h1 class="p-big" id="answeredTitle" data-i18n="answered_title"></h1>
+      <p class="p-sub" data-i18n="answered_sub"></p>
+    </section>
+
+    <!-- Feedback after the question -->
+    <section class="view p-center p-feedback" id="v-result">
+      <div class="fb-icon" id="fbIcon"></div>
+      <h1 class="fb-title" id="fbTitle"></h1>
+      <div class="fb-points" id="fbPoints"></div>
+      <div class="fb-streak" id="fbStreak"></div>
+      <div class="fb-correct" id="fbCorrect"></div>
+      <div class="fb-rank" id="fbRank"></div>
+      <div class="fb-total" id="fbTotal"></div>
+    </section>
+
+    <!-- Final -->
+    <section class="view p-center" id="v-final">
+      <div class="p-qnum" data-i18n="final_title"></div>
+      <div class="final-medal" id="finalMedal"></div>
+      <h1 class="final-rank" id="finalRank"></h1>
+      <p class="p-sub" id="finalOf"></p>
+      <div class="final-score" id="finalScore"></div>
+      <p class="p-muted" id="finalCorrect"></p>
+      <div class="final-top" id="finalTop"></div>
+      <button class="btn btn-primary" id="againBtn" type="button" data-i18n="play_again"></button>
+    </section>
+
+    <!-- Ended / kicked -->
+    <section class="view p-center" id="v-message">
+      <div class="wordmark p-logo"></div>
+      <h1 class="p-big" id="messageText"></h1>
+      <button class="btn btn-primary" id="messageBtn" type="button" data-i18n="play_again"></button>
+    </section>
+  </main>
+
+  <button class="icon-btn p-mute" id="muteBtn" type="button" data-i18n-aria="mute"></button>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/lang/uz.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/sound.js"></script>
+  <script src="/js/player.js"></script>
+</body>
+</html>

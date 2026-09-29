@@ -1,0 +1,132 @@
+{
+  "quizzes": [
+    {
+      "id": "yugurish-viktorina",
+      "title": "Yugurish bo'yicha viktorina",
+      "questions": [
+        {
+          "text": "Marafon masofasi rasman qancha?",
+          "options": [
+            "40 km",
+            "42,195 km",
+            "42 km",
+            "45 km"
+          ],
+          "correct": 1,
+          "timeLimit": 20,
+          "image": ""
+        },
+        {
+          "text": "Afsonaga ko'ra, Marafon shahridan Afinaga g'alaba xabarini yugurib yetkazgan yunon xabarchisi kim?",
+          "options": [
+            "Axilles",
+            "Leonid",
+            "Feydippid",
+            "Perikl"
+          ],
+          "correct": 2,
+          "timeLimit": 20,
+          "image": ""
+        },
+        {
+          "text": "Marafonning 42,195 km masofasi birinchi marta qaysi Olimpiadada belgilangan (qirollik oilasi finishni saroy oldidan ko'rishi uchun)?",
+          "options": [
+            "1896-yil, Afina",
+            "1908-yil, London",
+            "1924-yil, Parij",
+            "1936-yil, Berlin"
+          ],
+          "correct": 1,
+          "timeLimit": 30,
+          "image": ""
+        },
+        {
+          "text": "2019-yilda Venada marafon masofasini tarixda birinchi bo'lib 2 soatdan tezroq (1:59:40) yugurgan sportchi kim?",
+          "options": [
+            "Eliud Kipchoge",
+            "Mo Farax",
+            "Haile Gebrselassie",
+            "Kenenisa Bekele"
+          ],
+          "correct": 0,
+          "timeLimit": 20,
+          "image": ""
+        },
+        {
+          "text": "100 metrga yugurishda 9,58 soniyalik afsonaviy jahon rekordini kim o'rnatgan?",
+          "options": [
+            "Karl Lyuis",
+            "Tayson Gey",
+            "Yuseyn Bolt",
+            "Jastin Getlin"
+          ],
+          "correct": 2,
+          "timeLimit": 10,
+          "image": ""
+        },
+        {
+          "text": "Sizning tempingiz 5:00 daqiqa/km. 10 km ni qancha vaqtda yugurib o'tasiz?",
+          "options": [
+            "45 daqiqa",
+            "50 daqiqa",
+            "55 daqiqa",
+            "1 soat"
+          ],
+          "correct": 1,
+          "timeLimit": 20,
+          "image": ""
+        },
+        {
+          "text": "Uzoq yugurishda (1 soatdan ortiq) ter bilan suvdan tashqari yana nima ko'p yo'qotiladi va uni to'ldirish kerak?",
+          "options": [
+            "Oqsil",
+            "Elektrolitlar (natriy, kaliy)",
+            "Vitamin C",
+            "Temir"
+          ],
+          "correct": 1,
+          "timeLimit": 20,
+          "image": ""
+        },
+        {
+          "text": "Jarohatdan saqlanish uchun haftalik yugurish hajmini qanday oshirish tavsiya etiladi?",
+          "options": [
+            "Har hafta ikki baravar",
+            "Har hafta 50% ga",
+            "Har hafta 10% atrofida",
+            "Faqat musobaqadan oldin"
+          ],
+          "correct": 2,
+          "timeLimit": 20,
+          "image": ""
+        },
+        {
+          "text": "O'zbekistonning qaysi qadimiy shahrida Registon maydoni yonidan o'tadigan xalqaro yarim marafon o'tkaziladi?",
+          "options": [
+            "Nukus",
+            "Samarqand",
+            "Termiz",
+            "Qarshi"
+          ],
+          "correct": 1,
+          "timeLimit": 20,
+          "image": ""
+        },
+        {
+          "text": "Tungi yugurishda xavfsizlik uchun eng muhim narsa nima?",
+          "options": [
+            "Qimmatbaho krossovka",
+            "Nur qaytaruvchi kiyim va chiroq",
+            "Katta naushnik",
+            "Qora kiyim"
+          ],
+          "correct": 1,
+          "timeLimit": 10,
+          "image": ""
+        }
+      ],
+      "createdAt": "2026-09-29T00:00:00.000Z",
+      "updatedAt": "2026-09-29T00:00:00.000Z"
+    }
+  ]
+}
