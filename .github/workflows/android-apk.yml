@@ -9,6 +9,9 @@ on:
   push:
     paths: ['driver-app/**']
 
+permissions:
+  contents: write   # lets the workflow publish the APK as a GitHub Release (public download link)
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -31,7 +34,22 @@ jobs:
       - run: npx expo prebuild --platform android --no-install
       - name: Gradle assembleRelease
         run: cd android && ./gradlew assembleRelease --no-daemon
+      - name: Rename APK
+        run: |
+          VERSION=$(node -p "require('./app.json').expo.version")
+          cp android/app/build/outputs/apk/release/app-release.apk "pharmalive-driver-${VERSION}-build${{ github.run_number }}.apk"
+          echo "APK_VERSION=${VERSION}" >> "$GITHUB_ENV"
       - uses: actions/upload-artifact@v4
         with:
           name: pharmalive-driver-apk
-          path: driver-app/android/app/build/outputs/apk/release/*.apk
+          path: driver-app/pharmalive-driver-*.apk
+      - name: Publish download link (GitHub Release)
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: driver-v${{ env.APK_VERSION }}-build${{ github.run_number }}
+          name: Pharmalive Haydovchi v${{ env.APK_VERSION }} (build ${{ github.run_number }})
+          prerelease: true
+          body: |
+            Android APK for drivers. Open this page on the phone → tap the .apk file → install
+            (allow "Install unknown apps" once). Test build, signed with a debug key.
+          files: driver-app/pharmalive-driver-*.apk
