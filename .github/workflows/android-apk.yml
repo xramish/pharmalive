@@ -7,7 +7,7 @@ name: Driver app APK
 on:
   workflow_dispatch:
   push:
-    paths: ['driver-app/**']
+    paths: ['driver-app/**', '.github/workflows/android-apk.yml']
 
 permissions:
   contents: write   # lets the workflow publish the APK as a GitHub Release (public download link)
