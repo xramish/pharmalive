@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#05070f">
+  <meta name="robots" content="noindex">
+  <title>Night Run Viktorina</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,700;0,800;0,900;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/screen.css">
+</head>
+<body class="screen">
+  <div class="conn-banner" id="connBanner" data-i18n="reconnecting" hidden></div>
+
+  <header class="s-top">
+    <div class="wordmark s-logo"></div>
+    <div class="s-info" id="sInfo"></div>
+    <div class="s-code-pill" id="sCodePill" hidden></div>
+    <button class="icon-btn" id="muteBtn" type="button"></button>
+    <button class="icon-btn" id="fsBtn" type="button" data-i18n-title="fullscreen">⛶</button>
+    <button class="icon-btn" id="endBtn" type="button" data-i18n-title="end_game">✕</button>
+  </header>
+  <div class="s-lane"><div class="s-lane-runner" id="laneRunner"></div></div>
+
+  <main class="s-main">
+    <!-- Loading / error -->
+    <section class="view s-center" id="v-loading">
+      <div class="s-spinner"></div>
+      <h2 id="loadingText" data-i18n="creating"></h2>
+      <a class="btn btn-ghost" id="loadingBack" href="/host" data-i18n="back" hidden></a>
+    </section>
+
+    <!-- Lobby -->
+    <section class="view s-lobby" id="v-lobby">
+      <div class="lobby-join">
+        <div class="lj-step" data-i18n="join_step1"></div>
+        <div class="lj-url" id="joinUrlText"></div>
+        <div class="lj-code-label" data-i18n="game_code"></div>
+        <div class="lj-code" id="codeBig"></div>
+        <div class="lj-qr"><img id="qrImg" alt="QR"></div>
+        <div class="lj-step" data-i18n="join_step2"></div>
+        <div class="lj-warning" id="lanWarning" data-i18n="localhost_warning" hidden></div>
+      </div>
+      <div class="lobby-players">
+        <div class="lp-head">
+          <div class="lp-count"><span id="playerCount">0</span></div>
+          <div class="lp-hint" data-i18n="kick_hint"></div>
+        </div>
+        <div class="lp-list" id="playerList"></div>
+        <div class="lp-waiting" id="lpWaiting"><div class="s-spinner small"></div><span data-i18n="waiting_players"></span></div>
+      </div>
+    </section>
+
+    <!-- Question intro -->
+    <section class="view s-center s-intro" id="v-intro">
+      <div class="si-num" id="introNum"></div>
+      <h1 class="si-text" id="introText"></h1>
+      <div class="si-bar"><div id="introFill"></div></div>
+    </section>
+
+    <!-- Question -->
+    <section class="view s-question" id="v-question">
+      <h1 class="sq-text" id="qText"></h1>
+      <div class="sq-mid">
+        <div class="sq-timer">
+          <svg viewBox="0 0 220 130" class="track-ring">
+            <rect class="tr-bg" x="10" y="10" width="200" height="110" rx="55" pathLength="100"/>
+            <rect class="tr-lane" x="24" y="24" width="172" height="82" rx="41"/>
+            <rect class="tr-fill" id="ringFill" x="10" y="10" width="200" height="110" rx="55" pathLength="100"/>
+          </svg>
+          <div class="sq-seconds" id="qSeconds">0</div>
+        </div>
+        <div class="sq-image" id="qImageWrap"><img id="qImage" alt=""></div>
+        <div class="sq-answers-count">
+          <div class="sac-num" id="answeredNum">0</div>
+          <div class="sac-label" data-i18n="answers_label"></div>
+          <div class="sac-of" id="answeredOf"></div>
+          <button class="btn btn-ghost sac-skip" id="skipBtn" type="button" data-i18n="skip"></button>
+        </div>
+      </div>
+      <div class="s-answers" id="qAnswers"></div>
+    </section>
+
+    <!-- Reveal -->
+    <section class="view s-reveal" id="v-reveal">
+      <h2 class="sr-text" id="rText"></h2>
+      <div class="sr-body">
+        <div class="sr-left">
+          <div class="sr-chart" id="rChart"></div>
+          <div class="sr-summary" id="rSummary"></div>
+        </div>
+        <div class="sr-right">
+          <h3 class="sr-lb-title" data-i18n="leaderboard"></h3>
+          <div class="leaderboard" id="rLeaderboard"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Podium -->
+    <section class="view s-podium" id="v-podium">
+      <h1 class="sp-title" data-i18n="podium_title"></h1>
+      <div class="podium" id="podium"></div>
+      <div class="sp-others" id="others"></div>
+    </section>
+  </main>
+
+  <div class="s-controls">
+    <span class="s-kbd" data-i18n="keyboard_hint"></span>
+    <button class="btn btn-primary s-main-btn" id="mainBtn" type="button" hidden></button>
+  </div>
+
+  <canvas id="confetti"></canvas>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/lang/uz.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/sound.js"></script>
+  <script src="/js/confetti.js"></script>
+  <script src="/js/screen.js"></script>
+</body>
+</html>

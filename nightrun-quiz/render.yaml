@@ -1,0 +1,15 @@
+# Render Blueprint: https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: nightrun-quiz
+    runtime: node
+    rootDir: nightrun-quiz
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: HOST_PASSWORD
+        sync: false # you'll be asked for it when creating the service
+      - key: NODE_VERSION
+        value: 20
