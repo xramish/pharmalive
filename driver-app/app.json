@@ -1,0 +1,72 @@
+{
+  "expo": {
+    "name": "Pharmalive Haydovchi",
+    "slug": "pharmalive-driver",
+    "scheme": "pharmalive",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0f766e"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "uz.pharmalive.driver"
+    },
+    "android": {
+      "package": "uz.pharmalive.driver",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "backgroundColor": "#0f766e",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION"
+      ],
+      "blockedPermissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE"
+      ],
+      "predictiveBackGestureEnabled": false
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Yuk ustidagi QR kodni skanerlash va yetkazish rasmini olish uchun kamera kerak.",
+          "recordAudioAndroid": false,
+          "barcodeScannerEnabled": true
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Yetkazish qayerda bo'lganini tasdiqlash uchun joylashuv kerak."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "cameraPermission": "Yetkazilganini tasdiqlovchi rasm olish uchun kamera kerak.",
+          "photosPermission": false,
+          "microphonePermission": false
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": false
+    },
+    "extra": {
+      "apiUrl": "https://api.pharmalive.uz/api/v1"
+    }
+  }
+}

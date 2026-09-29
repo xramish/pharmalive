@@ -1,0 +1,37 @@
+# Builds an installable Android APK of the driver app on GitHub's servers.
+# Push the pharmalive folder to a GitHub repo, then: Actions → "Driver app APK" → Run workflow.
+# The APK appears under the run's "Artifacts" (signed with a debug key: fine for testing,
+# use EAS or your own keystore for the Play Store).
+name: Driver app APK
+
+on:
+  workflow_dispatch:
+  push:
+    paths: ['driver-app/**']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: driver-app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: driver-app/package-lock.json
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - run: npm ci
+      - run: npx tsc --noEmit
+      - run: npx expo prebuild --platform android --no-install
+      - name: Gradle assembleRelease
+        run: cd android && ./gradlew assembleRelease --no-daemon
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pharmalive-driver-apk
+          path: driver-app/android/app/build/outputs/apk/release/*.apk
