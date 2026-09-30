@@ -46,3 +46,37 @@ export function compareVersions(a: string, b: string): number {
   }
   return 0;
 }
+
+const WEEKDAYS = ['Yakshanba', 'Dushanba', 'Seshanba', 'Chorshanba', 'Payshanba', 'Juma', 'Shanba'];
+const MONTHS = ['yanvar', 'fevral', 'mart', 'aprel', 'may', 'iyun', 'iyul', 'avgust', 'sentabr', 'oktabr', 'noyabr', 'dekabr'];
+
+/** "Chorshanba, 30-sentabr" */
+export function todayLong(d = new Date()): string {
+  return `${WEEKDAYS[d.getDay()]}, ${d.getDate()}-${MONTHS[d.getMonth()]}`;
+}
+
+export function greeting(d = new Date()): string {
+  const h = d.getHours();
+  return h < 5 ? 'Xayrli tun' : h < 11 ? 'Xayrli tong' : h < 17 ? 'Xayrli kun' : 'Xayrli kech';
+}
+
+/** "Bugun" / "Kecha" / "28-sentabr, Dushanba" for a "YYYY-MM-DD ..." string */
+export function dayLabel(v: string): string {
+  const [y, m, d] = v.slice(0, 10).split('-').map(Number);
+  const day = new Date(y, m - 1, d);
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const diff = Math.round((today.getTime() - day.getTime()) / 86400000);
+  if (diff === 0) return 'Bugun';
+  if (diff === 1) return 'Kecha';
+  return `${d}-${MONTHS[m - 1]}, ${WEEKDAYS[day.getDay()]}`;
+}
+
+export function initials(name: string | undefined): string {
+  if (!name) return '?';
+  const p = name.trim().split(/\s+/);
+  return ((p[0]?.[0] ?? '') + (p[1]?.[0] ?? '')).toUpperCase();
+}
+
+export function firstName(name: string | undefined): string {
+  return name?.trim().split(/\s+/)[0] ?? '';
+}

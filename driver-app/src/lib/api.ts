@@ -7,7 +7,9 @@
 import Constants from 'expo-constants';
 
 export const API_URL: string =
-  (Constants.expoConfig?.extra as { apiUrl?: string } | undefined)?.apiUrl ?? 'https://api.pharmalive.uz/api/v1';
+  process.env.EXPO_PUBLIC_API_URL || // local testing only
+  (Constants.expoConfig?.extra as { apiUrl?: string } | undefined)?.apiUrl ||
+  'https://api.pharmalive.uz/api/v1';
 
 export const APP_VERSION: string = Constants.expoConfig?.version ?? '1.0.0';
 

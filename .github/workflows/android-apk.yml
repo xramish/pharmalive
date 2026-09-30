@@ -33,7 +33,8 @@ jobs:
       - run: npx tsc --noEmit
       - run: npx expo prebuild --platform android --no-install
       - name: Gradle assembleRelease
-        run: cd android && ./gradlew assembleRelease --no-daemon
+        # ARM only (every real Android phone) — keeps the APK small; emulator x86 builds are skipped
+        run: cd android && ./gradlew assembleRelease --no-daemon -PreactNativeArchitectures=arm64-v8a,armeabi-v7a
       - name: Rename APK
         run: |
           VERSION=$(node -p "require('./app.json').expo.version")

@@ -1,4 +1,4 @@
-import * as SecureStore from 'expo-secure-store';
+import * as SecureStore from './storage';
 import Constants from 'expo-constants';
 import { Platform } from 'react-native';
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
@@ -24,8 +24,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setToken(null);
     setUser(null);
     try {
-      await SecureStore.deleteItemAsync(TOKEN_KEY);
-      await SecureStore.deleteItemAsync(USER_KEY);
+      await SecureStore.deleteItem(TOKEN_KEY);
+      await SecureStore.deleteItem(USER_KEY);
     } catch {
       /* ignore */
     }
@@ -38,17 +38,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     (async () => {
       try {
-        const saved = await SecureStore.getItemAsync(TOKEN_KEY);
+        const saved = await SecureStore.getItem(TOKEN_KEY);
         if (saved) {
           setToken(saved);
           try {
             const me = await api.get<User>('/auth/me');
             setUser(me.data);
-            await SecureStore.setItemAsync(USER_KEY, JSON.stringify(me.data));
+            await SecureStore.setItem(USER_KEY, JSON.stringify(me.data));
           } catch (e) {
             if (e instanceof ApiError && e.isNetwork) {
               // Offline at start: open the app with the cached profile
-              const cached = await SecureStore.getItemAsync(USER_KEY);
+              const cached = await SecureStore.getItem(USER_KEY);
               if (cached) setUser(JSON.parse(cached) as User);
             } else {
               await clear(); // token rejected by the server
@@ -78,8 +78,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       throw new ApiError(403, 'not_driver', 'Bu ilova faqat haydovchilar uchun. Veb-paneldan foydalaning');
     }
     setToken(r.data.token);
-    await SecureStore.setItemAsync(TOKEN_KEY, r.data.token);
-    await SecureStore.setItemAsync(USER_KEY, JSON.stringify(r.data.user));
+    await SecureStore.setItem(TOKEN_KEY, r.data.token);
+    await SecureStore.setItem(USER_KEY, JSON.stringify(r.data.user));
     setUser(r.data.user);
   }, []);
 

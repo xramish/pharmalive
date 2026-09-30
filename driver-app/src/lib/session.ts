@@ -6,7 +6,8 @@ import { api, type AppConfig, type FailureReason, type ScanResult } from './api'
 
 let lastScan: ScanResult | null = null;
 export const setLastScan = (s: ScanResult | null) => { lastScan = s; };
-export const getLastScan = () => lastScan;
+export const getLastScan = () =>
+  lastScan ?? ((globalThis as { __PL_PREVIEW_SCAN__?: ScanResult }).__PL_PREVIEW_SCAN__ ?? null); // browser design preview only
 
 let reasons: FailureReason[] | null = null;
 export async function failureReasons(): Promise<FailureReason[]> {
